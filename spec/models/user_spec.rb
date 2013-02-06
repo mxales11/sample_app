@@ -67,6 +67,9 @@ before { @user.name = "a" * 51 }
 it { should_not be_valid }
 end
 
+
+
+
 describe "when email format is invalid" do
 it "should be invalid" do
 addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]
@@ -113,10 +116,6 @@ before { @user.password_confirmation = nil }
 it { should_not be_valid}
 end
 
-describe "when password confirmation is nil" do
-before { @user.password_confirmation = nil }
-it { should_not be_valid}
-end
 
 describe "email address with mixed case" do
 let(:mixed_case_email){ "Foo@ExAMPle.CoM" }
