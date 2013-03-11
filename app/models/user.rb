@@ -36,10 +36,10 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
   					uniqueness: { case_sensitive: false }
 
+  
   def feed
-    #This is preliminary. See "Following users" for the full implementation.
-    Micropost.where("user_id = ?", id)
-  end
+    Micropost.from_users_followed_by(self)
+  end 
 
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
